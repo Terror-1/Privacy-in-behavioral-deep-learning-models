@@ -1,2 +1,5 @@
 # ignore the file of datasets
 /datasets/*
+
+#ignoe files of name classifier 
+/src/names
