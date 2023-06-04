@@ -6,7 +6,7 @@ from torch.utils.data import Dataset
 
 # load data frame 
 df=pd.read_pickle("../datasets/sample.pkl")
-df =df.head()
+df =df[0:50]
 
 
 #print("Dataframe loaded",df.head())
@@ -39,7 +39,7 @@ class CustomEMAKIDataset(Dataset):
         # conver to torch dtypes
         self.dataset=torch.tensor(df.drop(['task','type','mu'], axis = 1).values.astype(np.float32))
 
-        self.labels=torch.tensor(self.df_labels.to_numpy().reshape(-1)).long()
+        self.labels=torch.tensor(self.df_labels.to_numpy().reshape(-1)).to(torch.float32)
     
     # This returns the total amount of samples in your Dataset
     def __len__(self):
