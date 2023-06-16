@@ -22,8 +22,11 @@ for i in range(len(keystrokes)):
 # change the type columns to 0 and 1
 keyboard_data['type'].replace('keydown', 0, inplace=True)
 keyboard_data['type'].replace('keyup', 1, inplace=True)
+# calculate the frequency of each keystroke
+keystroke_frequency = keyboard_data['value'].value_counts()
 
 
+#------------------------------------------------------------------------------------------------------
 
 ### convert the dataframe to tensor
 epislon = 0.1 # privacy budget
@@ -102,7 +105,7 @@ def laplace_noise(scale, epsilon):
 sensitivity = 1
 epsilons = np.linspace(0.1, 1, 10)
 noise_levels = [sensitivity / epsilon for epsilon in epsilons]
-
+"""
 plt.plot(epsilons, noise_levels, marker='o')
 plt.xlabel('Epsilon')
 plt.ylabel('Noise Level')
@@ -110,6 +113,7 @@ plt.title('Amount of Noise Added for Different Epsilon Values')
 plt.grid(True)
 
 plt.show()
+"""
 """
 gs1 = gs.GridSpec(nrows=2, ncols=2)
 figure = plt.gcf()
