@@ -27,4 +27,4 @@ def load_mouse_data():
      y_test= pd.concat([y_test,y_test_user])
     y_train = to_categorical(y_train)
     y_test = to_categorical(y_test)
-    return  np.asarray(X_train).astype('float32'), np.asarray(X_test).astype('float32'),np.asarray(y_train).astype('float32'), np.asarray(y_test).astype('float32')
+    return  X_train.astype('float32'), X_test.astype('float32'),y_train.astype('float32'), y_test.astype('float32')
