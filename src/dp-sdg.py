@@ -18,7 +18,7 @@ test_labels_dataset = tf.data.Dataset.from_tensor_slices(y_test)
 dpsgd = True
 input_dim = 5
 num_classes = 40
-epochs = 10
+epochs = 1
 batch_size = 64
 training_size = 0.8
 training_length = len(X_train)
@@ -27,6 +27,7 @@ l2_norm_clip = 1.0
 noise_multiplier = 1.1
 num_microbatches = 128
 learning_rate = 0.001
+delta = training_length**(-3/2)
 
 combined_train_dataset = tf.data.Dataset.zip((train_dataset, train_labels_dataset)).batch(batch_size)
 combined_test_dataset= tf.data.Dataset.zip((test_dataset, test_labels_dataset)).batch(batch_size)
@@ -61,4 +62,5 @@ privacy_report=compute_dp_sgd_privacy_lib.compute_dp_sgd_privacy_statement(numbe
                                               num_epochs=epochs,
                                               delta=1e-5,
                                               used_microbatching=False)
-print(privacy_report)
+eps,_ = compute_dp_sgd_privacy_lib.compute_dp_sgd_privacy(n=training_length, batch_size=batch_size, noise_multiplier=noise_multiplier, epochs=epochs, delta=delta)
+print("The training is eps-delta private with (ε = {epsilon}, δ = {delta})".format(epsilon=round(eps,3), delta="{:e}".format(delta)))
