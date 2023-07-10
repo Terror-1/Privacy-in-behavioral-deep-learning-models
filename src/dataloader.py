@@ -12,13 +12,13 @@ mouse_data=mouse_data.drop(['ID', 'INVALID', 'type', 'value', 'mu'], axis=1)
 keystrokes = keyboard_data['value'].unique()
 def load_mouse_data():
     USERS = set(mouse_data['user'])
-    X_train = pd.DataFrame(columns = ['O','C','E','A','N'])
-    X_test  = pd.DataFrame(columns = ['O','C','E','A','N'])
+    X_train = pd.DataFrame(columns = ['O','C','E','A','N','X','Y','resolutionX','resolutionY','task'])
+    X_test  = pd.DataFrame(columns = ['O','C','E','A','N','X','Y','resolutionX','resolutionY','task'])
     y_train = pd.DataFrame()
     y_test  = pd.DataFrame()
     for index,user in enumerate(USERS) :
      X_user= mouse_data[mouse_data['user']==user]
-     X = X_user[['O','C','E','A','N']]
+     X = X_user[['O','C','E','A','N','X','Y','resolutionX','resolutionY','task']]
      y = X_user['user']
      X_train_user, X_test_user, y_train_user, y_test_user = train_test_split(X, y, test_size=0.2, random_state=42)
      X_train = pd.concat([X_train,X_train_user])
