@@ -3,3 +3,6 @@
 
 #ignoe files of name classifier 
 /src/names
+
+#ignore file of results
+/results/*
