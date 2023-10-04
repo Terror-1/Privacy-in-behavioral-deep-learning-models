@@ -1,5 +1,4 @@
 # Differential Privacy in mouse and keyboard dataset
-- created by Hossam Elfar
 ## Introduction 
 Differential privacy (DP) is a system designed to publicly share information about a dataset while preserving the privacy of individuals within the dataset. It achieves this by describing patterns of groups within the dataset without revealing specific information about individuals. The fundamental concept behind differential privacy is that even with access to the query results, it should be difficult to infer sensitive information about any individual in the dataset, ensuring their privacy.
 
